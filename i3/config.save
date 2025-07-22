@@ -1,0 +1,288 @@
+#######################################
+######### dillacorn i3 config #########
+#######################################
+# https://github.com/dillacorn/deb12-i3-dots
+
+# disable_window_borders
+default_border pixel 1
+
+# set inner/outer gaps
+gaps inner 10
+gaps outer 10
+
+####################
+### input/output ###
+####################
+
+# custom res and configuration script
+exec --no-startup-id ~/.config/i3/scripts/custom_res.sh
+
+# persistent digital vibrance command
+exec_always --no-startup-id vibrant-cli DisplayPort-1 1.4
+exec_always --no-startup-id vibrant-cli DisplayPort-2 1.4
+
+# shuffle and display random wallpaper
+exec_always --no-startup-id feh --randomize --bg-fill ~/Pictures/wallpapers/*
+
+# virtual machine ~ for testing
+exec --no-startup-id xrandr --output Virtual-1 --mode 1600x900 --rate 60
+exec --no-startup-id xrandr --output Virtual1 --mode 1600x900 --rate 60
+
+###################
+### idle config ###
+###################
+
+exec --no-startup-id xautolock -corners -000 -time 10 -locker 'i3lock' -c 000000 &
+
+#############
+### binds ###
+#############
+
+# Lockscreen and window manager controls
+bindsym Mod4+ctrl+shift+p mode "[L]OCK       LOG[O]UT       [S]USPEND       [R]EBOOT       [P]OWEROFF"
+
+mode "[L]OCK       LOG[O]UT       [S]USPEND       [R]EBOOT       [P]OWEROFF" {
+    bindsym l mode "default", exec --no-startup-id ~/.config/i3/scripts/i3exit.sh lock
+    bindsym o mode "default", exec --no-startup-id ~/.config/i3/scripts/i3exit.sh logout
+    bindsym s mode "default", exec --no-startup-id ~/.config/i3/scripts/i3exit.sh suspend
+    bindsym r mode "default", exec --no-startup-id ~/.config/i3/scripts/i3exit.sh reboot
+    bindsym p mode "default", exec --no-startup-id ~/.config/i3/scripts/i3exit.sh shutdown
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+# rofi launcher
+bindsym Mod4+d exec rofi -show drun
+bindsym Mod1+shift+p exec rofi -show run
+
+# screenshots
+bindsym --release Mod4+shift+q exec --no-startup-id ~/.config/i3/scripts/screenshot.sh
+bindsym Mod4+shift+s exec flameshot gui
+
+# select wallpapers
+bindsym Mod4+shift+w exec nitroge
+
+# capture gif
+bindsym Mod4+shift+g exec peek --no-startup-d ~/.config/i3/scripts/gif.sh
+
+# camera popup with mpv
+bindsym Mod4+ctrl+shift+c exec --no-startup-id mpv av://v4l1:/dev/video0 --profile=low-latency --untimed
+
+# terminal
+bindsym Mod4+Return exec alacritty
+
+# kill focused window
+bindsym Mod4+q kill
+
+# lock screen
+bindsym Mod4+ctrl+shift+l exec i3lock --color 000000
+
+# file manager
+bindsym Mod4+e exec pcmanfm
+
+# pavucontrol-dark
+bindsym Mod4+v exec --no-startup-id env GTK_THEME=Materia-dark pavucontrol
+
+# btop
+bindsym Mod4+ctrl+shift+b exec alacritty -e btop --tty_on
+
+# htop
+bindsym Mod4+ctrl+shift+h exec alacritty -e htop
+
+# close dunst notification
+bindsym Mod4+space exec dunstctl close 
+
+# floating windows
+floating_modifier Mod1
+
+# reload i3 config
+bindsym Mod4+shift+r restart
+
+# rotate mod script
+bindsym Mod4+shift+d exec ~/.config/i3/scripts/rotate_mod.sh
+
+# theme change with rofi
+bindsym Mod4+shift+t exec selected=$(ls ~/.config/i3/themes/ | rofi -dmenu -p "Select Theme") && bash ~/.config/i3/themes/$selected
+
+# focus window navigation
+bindsym Mod4+j focus left
+bindsym Mod4+h focus down
+bindsym Mod4+k focus up
+bindsym Mod4+l focus right
+bindsym Mod4+Left focus left
+bindsym Mod4+Down focus down
+bindsym Mod4+Up focus up
+bindsym Mod4+Right focus right
+
+# move focused window
+bindsym Mod4+shift+h move left
+bindsym Mod4+shift+j move down
+bindsym Mod4+shift+k move up
+bindsym Mod4+shift+l move right
+# alternative with arrow keys
+bindsym Mod4+shift+Left move left
+bindsym Mod4+shift+Down move down
+bindsym Mod4+shift+Up move up
+bindsym Mod4+shift+Right move right
+
+# move focused workspace to a different monitor
+bindsym Mod4+Ctrl+Shift+Right move workspace to output right
+bindsym Mod4+Ctrl+Shift+Left move workspace to output left
+bindsym Mod4+Ctrl+Shift+Up move workspace to output up
+bindsym Mod4+Ctrl+Shift+Down move workspace to output down
+
+###################
+### workspaces: ###
+###################
+
+# Workspace switching
+bindsym Mod4+1 workspace --no-auto-back-and-forth "1:  "
+bindsym Mod4+2 exec --no-startup-id i3-msg workspace "2:  "
+bindsym Mod4+3 exec --no-startup-id i3-msg workspace "3:  "
+bindsym Mod4+4 exec --no-startup-id i3-msg workspace "4:  "
+bindsym Mod4+5 exec --no-startup-id i3-msg workspace "5:  "
+bindsym Mod4+6 exec --no-startup-id i3-msg workspace "6:  "
+bindsym Mod4+7 exec --no-startup-id i3-msg workspace "7:  "
+bindsym Mod4+8 exec --no-startup-id i3-msg workspace "8:  "
+bindsym Mod4+9 exec --no-startup-id i3-msg workspace "9:  "
+bindsym Mod4+0 exec --no-startup-id i3-msg workspace "10:  "
+
+# default workspaces for common programs
+assign [class="^com.moonlight_stream.Moonlight"] "1:  "
+assign [class="^net.mullvad.MullvadBrowser$"] "2:  "
+assign [class="^io.github.ungoogled_software.ungoogled_chromium$"] "2:  "
+assign [class="^dev.vencord.Vesktop$"] "3:  "
+assign [class="^steam$"] "4:  "
+assign [class="^itch$"] "4:  "
+assign [class="^Spotify$"] "5:  "
+assign [class="^TelegramDesktop$"] "6:  "
+assign [class="^chat-simplex-desktop-MainKt$"] "6:  "
+assign [class="^Vncviewer"] "7:  "
+assign [class="^teams-for-linux"] "8:  "
+assign [class="^kdenlive"] "9:  "
+assign [class="^Shotcut$"] "9:  "
+assign [class="^krita$"] "9:  "
+assign [class="^obs$"] "10:  "
+assign [class="^Gpu-screen-recorder-gtk$"] "10:  "
+
+# Move focused window to workspace
+bindsym Mod4+shift+1 move container to workspace "1:  "
+bindsym Mod4+shift+2 move container to workspace "2:  "
+bindsym Mod4+shift+3 move container to workspace "3:  "
+bindsym Mod4+shift+4 move container to workspace "4:  "
+bindsym Mod4+shift+5 move container to workspace "5:  "
+bindsym Mod4+shift+6 move container to workspace "6:  "
+bindsym Mod4+shift+7 move container to workspace "7:  "
+bindsym Mod4+shift+8 move container to workspace "8:  "
+bindsym Mod4+shift+9 move container to workspace "9:  "
+bindsym Mod4+shift+0 move container to workspace "10:  "
+
+# current window focus fullscreen
+bindsym Mod4+shift+f fullscreen
+
+# toggle focused window tiling and/or floating
+bindsym Mod4+f floating toggle
+
+# toggle sticky window
+bindsym Mod4+y sticky toggle
+
+###################
+### scratchpads ###
+###################
+
+bindsym Mod4+shift+x move scratchpad
+bindsym Mod4+x scratchpad show
+
+####################################
+### focused resize / adjust gaps ###
+####################################
+
+# resize windows:
+bindsym Mod4+ctrl+Right resize shrink width 100 px
+bindsym Mod4+ctrl+Up resize grow height 50 px
+bindsym Mod4+ctrl+Down resize shrink height 50 px
+bindsym Mod4+ctrl+Left resize grow width 100 px
+# same but vim keys
+bindsym Mod4+ctrl+l resize shrink width 100 px
+bindsym Mod4+ctrl+k resize grow height 50 px
+bindsym Mod4+ctrl+j resize shrink height 50 px
+bindsym Mod4+ctrl+h resize grow width 100 px
+
+# adjust inner gaps
+bindsym Mod4+ctrl+plus   gaps inner current plus 5
+bindsym Mod4+ctrl+minus  gaps inner current minus 5
+# adjust outer gaps
+bindsym Mod4+ctrl+shift+plus   gaps outer current plus 5
+bindsym Mod4+ctrl+shift+minus  gaps outer current minus 5 
+
+######################
+### media controls ###
+######################
+
+# media keys
+bindsym XF86AudioRaiseVolume exec bash -c "current_volume=$(pactl get-sink-volume 0 | awk '{print $5}' | sed 's/%//'); [ $current_volume -lt 150 ] && pactl set-sink-volume 0 +5%"
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume 0 -5%
+bindsym XF86AudioMute exec pactl set-sink-mute 0 toggle
+
+#bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 0 +5%
+#bindsym XF86AudioLowerVolume exec pactl set-sink-volume 0 -5%
+#bindsym XF86AudioMute exec pactl set-sink-mute 0 toggle
+
+# brightness control
+bindsym XF86MonBrightnessUp exec brightnessctl set 10%+
+bindsym XF86MonBrightnessDown exec brightnessctl set 10%-
+
+# media control: play/pause, next, previous
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+bindsym XF86AudioStop exec playerctl stop
+
+####################
+### bar / themes ###
+####################
+
+# font for window titles and bars
+font pango: Hack 10
+
+#start of bar section
+bar {
+    position top
+    status_command i3status -c ~/.config/i3/i3status.conf
+    colors {
+     background #282828
+     statusline #FFFFFF
+     separator  #666666
+        
+     focused_workspace  #262626 #E4DBBD #282828
+     active_workspace   #333333 #222222 #E3DDBA
+     inactive_workspace #333333 #222222 #888888
+     urgent_workspace   #2F343A #900000 #FFFFFF
+     binding_mode       #2F343A #900000 #FFFFFF
+    }
+}
+#end of bar section
+
+#start of window title bars & borders section
+
+# class                 border  bground text    indicator child_border
+client.focused          #262626 #E4DBBD #E3DDBA #E4DBBD   #BFB293
+client.focused_inactive #333333 #272727 #D79920 #484E50   #5F676A
+client.unfocused        #333333 #222222 #888888 #292D2E   #222222
+client.urgent           #2f343a #900000 #FFFFFF #900000   #900000
+client.placeholder      #000000 #0C0C0C #FFFFFF #000000   #0C0C0C
+
+client.background       #FFFFFF
+
+#end of window title bars & borders section
+
+#################
+### autostart ###
+#################
+
+exec --no-startup-id xsettingsd
+exec --no-startup-id lxpolkit
+exec --no-startup-id blueman-applet
+exec --no-startup-id nm-applet
+exec_always --no-startup-id dunst
