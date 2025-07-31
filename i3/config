@@ -3,13 +3,24 @@
 #######################################
 # https://github.com/dillacorn/deb12-i3-dots
 
+<<<<<<< HEAD
 # disable_window_borders
 default_border pixel 1
+=======
+font pango:JetBrainsMono Nerd Font 10  
+
+
+# disable_window_borders
+default_border none
+>>>>>>> 07cf3df (i3)
 # set inner/outer gaps
 gaps inner 10
 gaps outer 10
 
+<<<<<<< HEAD
 set $mod = 
+=======
+>>>>>>> 07cf3df (i3)
 ####################
 ### input/output ###
 ####################
@@ -22,8 +33,13 @@ exec_always --no-startup-id vibrant-cli DisplayPort-1 1.4
 exec_always --no-startup-id vibrant-cli DisplayPort-2 1.4
 
 # shuffle and display random wallpaper
+<<<<<<< HEAD
 exec --no-startup-id feh --randomize --bg-fill ~/Pictures/wallpapers/*
 bindsym Mod1+e exec --no-startup-id feh --randomize --bg-fill ~/Pictures/wallpapers/*
+=======
+exec --no-startup-id feh --randomize --bg-fill ~/.wallpaper/*
+bindsym Mod1+e exec --no-startup-id feh --randomize --bg-fill ~/.wallpaper/*
+>>>>>>> 07cf3df (i3)
 
 # virtual machine ~ for testing
 exec --no-startup-id xrandr --output Virtual-1 --mode 1600x900 --rate 60
@@ -52,18 +68,34 @@ mode "[L]OCK       LOG[O]UT       [S]USPEND       [R]EBOOT       
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
+<<<<<<< HEAD
 
 # rofi launcher
 bindsym Mod4+d exec rofi -show drun
 bindsym Mod1+shift+p exec rofi -show run
+=======
+#============#
+#bindsym#
+#============#
+
+#ulauncher
+#bindsym Mod4+d exec ulauncher
+
+# rofi launcher
+bindsym Mod4+d exec rofi -show drun
+#bindsym Mod1+shift+p exec rofi -show run
+>>>>>>> 07cf3df (i3)
 
 # screenshots
 bindsym --release Mod4+shift+q exec --no-startup-id ~/.config/i3/scripts/screenshot.sh
 bindsym Mod4+shift+s exec flameshot gui
 
+<<<<<<< HEAD
 # select wallpapers
 #bindsym Mod4+shift+w exec nitroge
 
+=======
+>>>>>>> 07cf3df (i3)
 # capture gif
 bindsym Mod4+shift+g exec peek --no-startup-d ~/.config/i3/scripts/gif.sh
 
@@ -80,15 +112,22 @@ bindsym Mod4+q kill
 bindsym Mod4+ctrl+shift+l exec i3lock --color 000000
 
 # file manager
+<<<<<<< HEAD
 bindsym Mod4+e exec pcmanfm
+=======
+bindsym Mod4+e exec nautilus
+>>>>>>> 07cf3df (i3)
 
 # vscode
 bindsym Mod4 +c exec code
 
+<<<<<<< HEAD
 # open chatgpt
 
 #bindsym Mod4+w exec firefox www.chatgpt.com
 
+=======
+>>>>>>> 07cf3df (i3)
 # open youtube
 
 #bindsym Mod4+y exec firefox www.youtube.com
@@ -130,7 +169,11 @@ bindsym Mod4+Right focus right
 
 #open browser
 
+<<<<<<< HEAD
 bindsym Mod4+b exec brave-browser
+=======
+bindsym Mod4+b exec brave 
+>>>>>>> 07cf3df (i3)
 
 # move focused window
 bindsym Mod4+shift+h move left
@@ -267,6 +310,7 @@ font pango:Hack Nerd Font 10
 
 
 bar {
+<<<<<<< HEAD
     position bottom
     status_command i3blocks
     colors {
@@ -277,6 +321,29 @@ bar {
      focused_workspace  #262626 #E4DBBD #282828
      active_workspace   #333333 #222222 #E3DDBA
      inactive_workspace #333333 #222222 #888888
+=======
+    font pango:JetBrainsMono Nerd Font 12
+
+    position top
+    status_command i3blocks
+    colors {
+     # Gruvbox bar colors (commented for easy restoration)
+     # background #282828
+     # statusline #FFFFFF
+     # separator  #666666
+     # focused_workspace  #262626 #E4DBBD #282828
+     # active_workspace   #333333 #222222 #E3DDBA
+     # inactive_workspace #333333 #222222 #888888
+     
+     # Dark theme bar colors
+     background #0a0a0a
+     statusline #ffffff
+     separator  #333333
+        
+     focused_workspace  #1a1a1a #ffffff #0a0a0a
+     active_workspace   #0f0f0f #0a0a0a #888888
+     inactive_workspace #0f0f0f #0a0a0a #666666
+>>>>>>> 07cf3df (i3)
      urgent_workspace   #2F343A #900000 #FFFFFF
      binding_mode       #2F343A #900000 #FFFFFF
     }
@@ -287,9 +354,21 @@ bar {
 #start of window title bars & borders section
 
 # class                 border  bground text    indicator child_border
+<<<<<<< HEAD
 client.focused          #262626 #E4DBBD #E3DDBA #E4DBBD   #BFB293
 client.focused_inactive #333333 #272727 #D79920 #484E50   #5F676A
 client.unfocused        #333333 #222222 #888888 #292D2E   #222222
+=======
+# Gruvbox colors (commented for easy restoration)
+# client.focused          #00000000 #E4DBBD #E3DDBA #00000000   #00000000
+# client.focused_inactive #00000000 #272727 #D79920 #00000000   #00000000
+# client.unfocused        #00000000 #222222 #888888 #00000000   #00000000
+
+# Dark theme colors
+client.focused          #00000000 #1a1a1a #ffffff #00000000   #00000000
+client.focused_inactive #00000000 #0f0f0f #888888 #00000000   #00000000
+client.unfocused        #00000000 #0a0a0a #666666 #00000000   #00000000
+>>>>>>> 07cf3df (i3)
 client.urgent           #2f343a #900000 #FFFFFF #900000   #900000
 client.placeholder      #000000 #0C0C0C #FFFFFF #000000   #0C0C0C
 
@@ -301,6 +380,7 @@ client.background       #FFFFFF
 ### autostart ###
 #################
 
+<<<<<<< HEAD
 exec --no-startup-id xsettingsd
 exec --no-startup-id lxpolkit
 exec --no-startup-id blueman-applet
@@ -309,3 +389,16 @@ exec_always --no-startup-id dunst
 exec --no-startup-id setxkbmap -layout br -variant thinkpad
 
   
+=======
+exec xinput set-prop "SynPS/2 Synaptics TouchPad" "libinput Tapping Enabled" 1
+exec ulauncher
+exec nm-applet
+exec xsettingsd
+exec lxpolkit
+exec blueman-applet
+exec  dunst
+exec  setxkbmap -layout br -variant thinkpad 
+exec_always --no-startup-id picom --config ~/.config/picom.conf
+
+
+>>>>>>> 07cf3df (i3)

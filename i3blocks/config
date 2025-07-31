@@ -1,4 +1,5 @@
 
+<<<<<<< HEAD
 [ascii_gif]
 command=~/.config/i3blocks/ascii_gif.sh
 interval=100
@@ -13,12 +14,39 @@ interval=2
 
 [memory]
 command=free -h | awk '/Mem:/ {print $3 "/" $2}'
+=======
+
+
+[ascii_gif]
+command=~/.config/i3blocks/ascii_gif.sh
+interval=1
+
+[volume]
+command=pamixer --get-volume-human | awk '{print "    " $0}'
+interval=-2
+
+[cpu_usage_temp]
+command=~/.config/i3blocks/cpu_usage_temp.sh
+interval=1
+
+[memory]
+command=~/.config/i3blocks/memory.sh
+>>>>>>> 07cf3df (i3)
 interval=2
 
 [battery]
 command=~/.config/i3blocks/battery.sh
+<<<<<<< HEAD
 interval=30
 
 [clock]
 command=date '+  %A %e %B %Y    %r'
 interval=1
+=======
+interval=1
+
+[clock]
+command=date '+  %A %e %B %Y  %r'
+interval=1
+
+>>>>>>> 07cf3df (i3)
