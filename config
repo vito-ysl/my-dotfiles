@@ -11,4 +11,4 @@ included ~/.config/i3/configs/startup.conf
 exec --no-startup-id dex --autostart --environment i3
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id nm-applet
-exec --no-startup-id xrandr --output eDP-1 --mode 1920x1080 --primary --output HDMI-2 --mode 1920x1080 --right-of eDP-1
+exec --no-startup-id xrandr --output eDP-1 --mode 1920x1080 --output HDMI-2 --mode 1920x1080 --right-of eDP-1
